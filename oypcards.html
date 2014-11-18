@@ -1,27 +1,33 @@
 <!DOCTYPE html>
+
+<!--
+  TODO:
+  -get card to render as image, or find javascript solution to generate pdf of cards check jsPDF
+  -fix textbox not allowing spaces issue
+  -figure out how to allow uploading images
+  -figure out how to save images
+  -get website public
+-->
+
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Lara Janecka">
-
     <title>Ontario Youth Parliament Cards</title>
-
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="css/carousel.css" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="css/oypcards.css">
   </head>
-<!-- navbar
-================================================== -->
+  <!-- navbar
+  ================================================== -->
   <body>
     <div class="navbar-wrapper">
       <div class="container">
-
         <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -30,11 +36,8 @@
             <button type="button" id="gallery" class="btn btn-success"> Download Card Gallery </button>
           </div>
         </nav>
-
       </div>
     </div>
-
-
     <!-- Carousel
     ================================================== -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -44,6 +47,8 @@
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
         <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+        <li data-target="#myCarousel" data-slide-to="5"></li>
       </ol>
       <div class="carousel-inner" role="listbox">
         <div id="introItem" class="item active">
@@ -62,13 +67,13 @@
                 <div class="form-group">
                   <label for="name" class="col-sm-4 control-label">What is your name?</label>
                   <div class="col-sm-6">
-                    <textarea class="form-control" id="name" data-bind="value: name"></textarea>
+                    <textarea class="form-control" id="name" data-bind="value: newName"></textarea>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="nickName" class="col-sm-4 control-label">Got a nickname?</label>
                   <div class="col-sm-6">
-                    <textarea class="form-control" id="nickName" data-bind="value: nickName"></textarea>
+                    <textarea class="form-control" id="nickName" data-bind="value: newNickName"></textarea>
                   </div>
                 </div>
               </form>
@@ -84,19 +89,19 @@
                 <div class="form-group">
                   <label for="stat1" class="col-sm-4 control-label">First Stat</label>
                   <div class="col-sm-6">
-                    <textarea class="form-control" id="stat1" data-bind="value: stat1"></textarea><textarea class="form-control" id="stat1Val" data-bind="value: stat1Val"></textarea>
+                    <textarea class="form-control" id="stat1" data-bind="value: newStat1"></textarea><textarea class="form-control" id="stat1Val" data-bind="value: newStat1Val"></textarea>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="stat2" class="col-sm-4 control-label">Second Stat</label>
                   <div class="col-sm-6">
-                    <textarea class="form-control" id="stat2" data-bind="value: stat2"></textarea><textarea class="form-control" id="stat2Val" data-bind="value: stat2Val"></textarea>
+                    <textarea class="form-control" id="stat2" data-bind="value: newStat2"></textarea><textarea class="form-control" id="stat2Val" data-bind="value: newStat2Val"></textarea>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="stat3" class="col-sm-4 control-label">Second Stat</label>
                   <div class="col-sm-6">
-                    <textarea class="form-control" id="stat3" data-bind="value: stat3"></textarea><textarea class="form-control" id="stat3Val" data-bind="value: stat3Val"></textarea>
+                    <textarea class="form-control" id="stat3" data-bind="value: newStat3"></textarea><textarea class="form-control" id="stat3Val" data-bind="value: newStat3Val"></textarea>
                   </div>
                 </div>
               </form>
@@ -112,10 +117,35 @@
                 <div class="form-group">
                   <label for="message" class="col-sm-4 control-label">What do you want to say?</label>
                   <div class="col-sm-6">
-                    <textarea class="form-control" id="message" data-bind="value: message"> </textarea>
+                    <textarea class="form-control" id="message" data-bind="value: newMessage"> </textarea>
                   </div>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Contact</h1>
+              <p>What's your OYP email</p>
+              <form class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label for="message" class="col-sm-4 control-label">Email: </label>
+                  <div class="col-sm-6">
+                    <textarea class="form-control" id="email" data-bind="value: newEmail"> </textarea>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Finale</h1>
+              <p>This is your final chance to make any changes to your card. Once you click save it is final so be sure to check it over (hint: the card renders right below this).</p>
+              <button class="btn btn-detault">Save Card</button>
             </div>
           </div>
         </div>
@@ -129,31 +159,14 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-
-
     <div class="row">
-      <div id="card" class="thumbnail">
-        <h2 data-bind="text: fullName"></h2>
-        <img src="http://placehold.it/200x200">
-        <div class="caption">
-        <p class="stat" data-bind="html: Stat1"></p>
-        <p class="stat" data-bind="html: Stat2"></p>
-        <p class="stat" data-bind="html: Stat3"></p>
-        <p class="message" data-bind="html: Message"></p>
-        </div>
+      <div id="card" class="thumbnail" data-bind="html: newCard">
+      </div>
     </div>
-  </div>
 
-    <!-- /.carousel -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type='text/javascript' src='js/jquery-2.1.1.min.js'></script>
     <script src="js/bootstrap.min.js"></script>
     <script type='text/javascript' src='js/knockout-latest.js'></script>
     <script type='text/javascript' src='js/oypcards.js'></script>
   </body>
 </html>
-

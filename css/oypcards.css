@@ -38,7 +38,8 @@ body {
 
 #myCarousel {
     top: 100px;
-    padding-bottom: 45px
+    padding-bottom: 45px;
+    height: 600px;
 }
 
 #card {
