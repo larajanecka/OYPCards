@@ -18,6 +18,11 @@ function CardViewModel(data) {
     this.stat3Val = ko.observable(data.stat3Val);
     this.message = ko.observable(data.message);
     this.email = ko.observable(data.email);
+    this.position = ko.observable(data.position);
+    this.gluten = ko.observable(data.gluten);
+    this.veg = ko.observable(data.veg);
+    this.allergies = ko.observable(data.allergies);
+
 }
 
 
@@ -35,9 +40,16 @@ function CardDeck() {
     self.newStat3Val = ko.observable("Long walks on the beach");
     self.newMessage = ko.observable("There is nothing outside of yourself that can ever enable you to get better, stronger, richer, quicker, or smarter. Everything is within. Everything exists. Seek nothing outside of yourself");
     self.newEmail = ko.observable("myamoto.musashi@oyp.on.ca");
+    self.newPosition = ko.observable("Honorable Member from Japan");
+    self.newGluten = ko.observable(true);
+    self.newVeg = ko.observable(true);
+    self.newAllergies = ko.observable("The undead");
 
     self.newCard = ko.computed(function() {
+        var gluten = (self.newGluten()) ? '<img src="./images/gluten.png">' : "";
+        var veg = (self.newVeg()) ? '<img src="./images/veg.png">' : "";
         return '<h2>' + self.newName() + '(a.k.a ' + self.newNickName() + ')</h2>' +
+              '<h5>' + self.newPosition() + '</h5>' +
             '<img src="http://placehold.it/200x200">' +
             '<div class="caption">' +
               '<p class="stat"><strong>' + self.newStat1() + '</strong>: ' + self.newStat1Val() + '</p>' +
@@ -45,12 +57,14 @@ function CardDeck() {
               '<p class="stat"><strong>' + self.newStat3() + '</strong>: ' + self.newStat3Val() + '</p>' +
               '<p class="message"><em>' + self.newMessage() + '</em></p>' +
               '<p class="email">' + self.newEmail() + '</p>' +
+               '<div class="foods"><div class="foodImages">' + gluten + veg + '</div>' +
+              '<p class="allergies"><strong>Allergies: </strong>' + self.newAllergies() + '</p>' +
+              '</div>' +
            '</div>'
     }, this);
 
-
     self.addCard = function() {
-        self.cards.push(new CardVeiwModel({
+        self.cards.push(new CardViewModel({
             name: self.newName(),
             nickName: self.newNickName(),
             stat1: self.newStat1(),
@@ -60,7 +74,11 @@ function CardDeck() {
             stat3: self.newStat3(),
             stat3Val: self.newStat3Val(),
             message: self.newMessage(),
-            email: self.newEmail()
+            email: self.newEmail(),
+            position: self.newPosition(),
+            gluten: self.newGluten(),
+            veg: self.newVeg(),
+            allergies: self.newAllergies()
         }));
 
         self.newName("");
@@ -72,20 +90,31 @@ function CardDeck() {
         self.newStat3("");
         self.newStat3Val("");
         self.newMessage("");
-    };
+        self.newEmail("");
+        self.newPosition("");
+        self.newGluten("");
+        self.newVeg("");
+        self.newAllergies("");
 
-    $.getJSON("/cards", function(cards) {
-        var mappedCards = $.map(cards, function(item) { return new CardViewModel(item) });
-        self.cards(mappedCards);
-    });
 
-    self.save = function() {
         $.ajax("/cards", {
             data: ko.toJSON({cards: self.cards}),
             type: "post", contentType: "application/json",
             success: function(result) {console.log("result");}
         })
+    };
+
+    self.deleteCard = function(card) {
+        self.cards.destroy(card);
     }
+
+    self.getCards = function() {
+        return $.getJSON("/cards", function(cards) {
+            var mappedCards = $.map(cards, function(item) { return new CardViewModel(item) });
+            self.cards(mappedCards);
+        });
+    }
+
 }
 
 ko.applyBindings(new CardDeck());

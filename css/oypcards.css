@@ -62,3 +62,18 @@ body {
     font-size: 18px;
     line-height: 1.4;
 }
+
+#card .foods {
+    position: relative;
+    float: right;
+}
+
+#card .allergies {
+    font-size: 12px;
+}
+
+#card .foods img{
+    width: 10%;
+    position: relative;
+    float: right;
+}
