@@ -51,141 +51,147 @@
         <li data-target="#myCarousel" data-slide-to="3"></li>
         <li data-target="#myCarousel" data-slide-to="4"></li>
         <li data-target="#myCarousel" data-slide-to="5"></li>
+        <li data-target="#myCarousel" data-slide-to="6"></li>
       </ol>
-      <div class="carousel-inner" role="listbox">
-        <div id="introItem" class="item active">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>So, tell me about yourself.</h1>
-              <p>Fill out the following slides with information you want to share with your fellow parliamentarians. As you populate each field of the card it will change the display below.</p>
+      <form id="cardForm" data-bind="submit: addCard">
+        <div class="carousel-inner" role="listbox">
+          <div id="introItem" class="item active">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>So, tell me about yourself.</h1>
+                <p>Fill out the following slides with information you want to share with your fellow parliamentarians. As you populate each field of the card it will change the display below.</p>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>The Basics</h1>
+                                  <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">What is your name?</label>
+                    <div class="col-sm-6">
+                      <textarea class="form-control" id="name" data-bind="value: name"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="nickName" class="col-sm-4 control-label">Got a nickname?</label>
+                    <div class="col-sm-6">
+                      <textarea class="form-control" id="nickName" data-bind="value: nickName"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="position" class="col-sm-4 control-label">What's your position?</label>
+                    <div class="col-sm-6">
+                      <textarea class="form-control" id="postion" data-bind="value: position"></textarea>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Image</h1>
+                  <div class="form-group">
+                    <label for="name" class="col-sm-4 control-label">What do you look like?</label>
+                    <div class="col-sm-6">
+                      <input type="file" data-bind="value: fileName, fileUpload: fileName, url: url">
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Stats</h1>
+                <p>Let your fellow dignitaries know your strengths (or weaknesses)</p>
+                                  <div class="form-group">
+                    <label for="stat1" class="col-sm-4 control-label">First Stat</label>
+                    <div class="col-sm-6">
+                      <textarea class="form-control" id="stat1" data-bind="value: stat1"></textarea><textarea class="form-control" id="stat1Val" data-bind="value: stat1Val"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="stat2" class="col-sm-4 control-label">Second Stat</label>
+                    <div class="col-sm-6">
+                      <textarea class="form-control" id="stat2" data-bind="value: stat2"></textarea><textarea class="form-control" id="stat2Val" data-bind="value: stat2Val"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="stat3" class="col-sm-4 control-label">Second Stat</label>
+                    <div class="col-sm-6">
+                      <textarea class="form-control" id="stat3" data-bind="value: stat3"></textarea><textarea class="form-control" id="stat3Val" data-bind="value: stat3Val"></textarea>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Your Message</h1>
+                <p>Leave a message for other politicians</p>
+                                  <div class="form-group">
+                    <label for="message" class="col-sm-4 control-label">What do you want to say?</label>
+                    <div class="col-sm-6">
+                      <textarea class="form-control" id="message" data-bind="value: message"> </textarea>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Contact</h1>
+                <p>What's your OYP email</p>
+                                  <div class="form-group">
+                    <label for="message" class="col-sm-4 control-label">Email: </label>
+                    <div class="col-sm-6">
+                      <textarea class="form-control" id="email" data-bind="value: email"> </textarea>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Dietary concerns</h1>
+                <p>Let our chef's know what food you don't eat.</p>
+                                  <div class="form-group">
+                    <label for="message" class="col-sm-4 control-label">Gluten Free?</label>
+                    <div class="col-sm-6">
+                      <input class="form-control" type="checkbox" id="gluten" data-bind="checked: gluten">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="message" class="col-sm-4 control-label">Vegetarian?</label>
+                    <div class="col-sm-6">
+                      <input class="form-control" type="checkbox" id="gluten" data-bind="checked: veg">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="message" class="col-sm-4 control-label">Allergies?</label>
+                    <div class="col-sm-6">
+                      <textarea class="form-control" type="checkbox" id="gluten" data-bind="value: allergies"></textarea>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Finale</h1>
+                <p>This is your final chance to make any changes to your card. Once you click save it is final so be sure to check it over (hint: the card renders right below this).</p>
+                <button class="btn btn-detault" data-bind="click: addCard">Save Card</button>
+              </div>
             </div>
           </div>
         </div>
-        <div class="item">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>The Basics</h1>
-              <form class="form-horizontal" role="form">
-                <div class="form-group">
-                  <label for="name" class="col-sm-4 control-label">What is your name?</label>
-                  <div class="col-sm-6">
-                    <textarea class="form-control" id="name" data-bind="value: newName"></textarea>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="nickName" class="col-sm-4 control-label">Got a nickname?</label>
-                  <div class="col-sm-6">
-                    <textarea class="form-control" id="nickName" data-bind="value: newNickName"></textarea>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="position" class="col-sm-4 control-label">What's your position?</label>
-                  <div class="col-sm-6">
-                    <textarea class="form-control" id="postion" data-bind="value: newPosition"></textarea>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Stats</h1>
-              <p>Let your fellow dignitaries know your strengths (or weaknesses)</p>
-              <form class="form-horizontal" role="form">
-                <div class="form-group">
-                  <label for="stat1" class="col-sm-4 control-label">First Stat</label>
-                  <div class="col-sm-6">
-                    <textarea class="form-control" id="stat1" data-bind="value: newStat1"></textarea><textarea class="form-control" id="stat1Val" data-bind="value: newStat1Val"></textarea>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="stat2" class="col-sm-4 control-label">Second Stat</label>
-                  <div class="col-sm-6">
-                    <textarea class="form-control" id="stat2" data-bind="value: newStat2"></textarea><textarea class="form-control" id="stat2Val" data-bind="value: newStat2Val"></textarea>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="stat3" class="col-sm-4 control-label">Second Stat</label>
-                  <div class="col-sm-6">
-                    <textarea class="form-control" id="stat3" data-bind="value: newStat3"></textarea><textarea class="form-control" id="stat3Val" data-bind="value: newStat3Val"></textarea>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Your Message</h1>
-              <p>Leave a message for other politicians</p>
-              <form class="form-horizontal" role="form">
-                <div class="form-group">
-                  <label for="message" class="col-sm-4 control-label">What do you want to say?</label>
-                  <div class="col-sm-6">
-                    <textarea class="form-control" id="message" data-bind="value: newMessage"> </textarea>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Contact</h1>
-              <p>What's your OYP email</p>
-              <form class="form-horizontal" role="form">
-                <div class="form-group">
-                  <label for="message" class="col-sm-4 control-label">Email: </label>
-                  <div class="col-sm-6">
-                    <textarea class="form-control" id="email" data-bind="value: newEmail"> </textarea>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Dietary concerns</h1>
-              <p>Let our chef's know what food you don't eat.</p>
-              <form class="form-horizontal" role="form">
-                <div class="form-group">
-                  <label for="message" class="col-sm-4 control-label">Gluten Free?</label>
-                  <div class="col-sm-6">
-                    <input class="form-control" type="checkbox" id="gluten" data-bind="checked: newGluten">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="message" class="col-sm-4 control-label">Vegetarian?</label>
-                  <div class="col-sm-6">
-                    <input class="form-control" type="checkbox" id="gluten" data-bind="checked: newVeg">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="message" class="col-sm-4 control-label">Allergies?</label>
-                  <div class="col-sm-6">
-                    <textarea class="form-control" type="checkbox" id="gluten" data-bind="value: newAllergies"></textarea>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Finale</h1>
-              <p>This is your final chance to make any changes to your card. Once you click save it is final so be sure to check it over (hint: the card renders right below this).</p>
-              <button class="btn btn-detault" data-bind="click: addCard">Save Card</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      </form>
       <div style="background-color:white">There are <strong data-bind="text: cards().length"></strong> cards left</div>
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
@@ -197,7 +203,7 @@
       </a>
     </div>
     <div class="row">
-      <div id="card" class="thumbnail" data-bind="html: newCard">
+      <div id="card" class="thumbnail" data-bind="html: card">
       </div>
     </div>
 
