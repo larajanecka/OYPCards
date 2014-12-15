@@ -1,0 +1,16 @@
+@(cards: List[Card])
+
+@import helper._
+
+@main("Manage Cards") {
+
+    <h1>@cards.size card(s)</h1>
+
+    <ul>
+        @cards.map { card =>
+            <li>
+                @views.html.cardTemplate(card)
+            </li>
+        }
+    </ul>
+}

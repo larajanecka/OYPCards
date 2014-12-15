@@ -1,0 +1,2 @@
+card.name={0} (a.k.a {1})
+card.stat=<tspan font-weight="bold">{0}: </tspan>{1}

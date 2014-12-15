@@ -1,0 +1,30 @@
+@(cardForm: Form[CardClass])
+
+@import helper._
+
+@main("Add Card") {
+
+    <h2>Add a new card</h2>
+
+    @form(routes.Application.addCard) {
+
+        @inputText(cardForm("name"))
+        @inputText(cardForm("nickName"))
+        @inputText(cardForm("title"))
+        @inputText(cardForm("stat1"))
+        @inputText(cardForm("stat2"))
+        @inputText(cardForm("stat3"))
+        @inputText(cardForm("val1"))
+        @inputText(cardForm("val2"))
+        @inputText(cardForm("val3"))
+        @inputText(cardForm("message"))
+        @inputText(cardForm("email"))
+        @inputText(cardForm("allergies"))
+        @checkbox(cardForm("gluten"))
+        @checkbox(cardForm("vegetarian"))
+
+        <input type="submit" value="Create">
+
+    }
+
+}
