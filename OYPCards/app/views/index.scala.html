@@ -4,26 +4,62 @@
 
 @main("Add Card") {
 
-    <h2>Add a new card</h2>
+    <div id="header">
+        <a href="http://www.oyp.on.ca/" target="_blank">
+            <img id="logo" src="@routes.Assets.at("images/logo.png")">
+        </a>
+        <h1>Application Card</h1>
+        <a><button>Download Gallery</button></a>
+    </div>
 
     @form(routes.Application.addCard) {
 
-        @inputText(cardForm("name"))
-        @inputText(cardForm("nickName"))
-        @inputText(cardForm("title"))
-        @inputText(cardForm("stat1"))
-        @inputText(cardForm("stat2"))
-        @inputText(cardForm("stat3"))
-        @inputText(cardForm("val1"))
-        @inputText(cardForm("val2"))
-        @inputText(cardForm("val3"))
-        @inputText(cardForm("message"))
-        @inputText(cardForm("email"))
-        @inputText(cardForm("allergies"))
-        @checkbox(cardForm("gluten"))
-        @checkbox(cardForm("vegetarian"))
+        <div class="section" id="basics">
+            <h2>The Basics</h2>
+            <p>Tell us a bit about yourself!</p>
+            <div class="input_container">
+                @inputText(cardForm("name"))
+                @inputText(cardForm("nickName"))
+                @inputText(cardForm("title"))
+                @inputText(cardForm("email"))
+            </div>
+        </div>
+        <div class="section" id="fun_facts">
+            <h2>The Facts</h2>
+            <p>Have some fun facts you want to share?</p>
+            <div class="input_container">
+                <div class="stat_container">
+                    @inputText(cardForm("stat1"))
+                    @inputText(cardForm("val1"))
+                </div>
+                <div class="stat_container">
+                    @inputText(cardForm("stat2"))
+                    @inputText(cardForm("val2"))
+                </div>
+                <div class="stat_container">
+                    @inputText(cardForm("stat3"))
+                    @inputText(cardForm("val3"))
+                </div>
+            </div>
+        </div>
+        <div class="section" id="the_point">
+            <h2>The Point</h2>
+            <p>What's your message?</p>
+            <div class="input_container">
+                @textarea(cardForm("message"))
+            </div>
+        </div>
+        <div class="section" id="considerations">
+            <h2>The Food Stuffs</h2>
+            <p>What should we know?</p>
+            <div class="input_container">
+                @inputText(cardForm("allergies"))
+                @checkbox(cardForm("gluten"))
+                @checkbox(cardForm("vegetarian"))
+            </div>
+        </div>
 
-        <input type="submit" value="Create">
+        <button id="create"><input type="submit" value="Create"></button>
 
     }
 
