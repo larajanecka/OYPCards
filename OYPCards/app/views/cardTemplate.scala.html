@@ -3,7 +3,6 @@
 <svg width="63.5mm" height="88mm" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
     <defs>
         <rect id="rect" width="100%" height="100%" rx="5" ry="5" fill="none" stroke="black"/>
-        <rect id="messageClip" width="100%" height="5mm"/>
         <clipPath id="clip">
             <use xlink:href="#rect"/>
         </clipPath>
@@ -19,8 +18,8 @@
     <text x="5" y="200" font-size="10pt"><tspan font-weight="bold">@{card.stat1}: </tspan>@card.val1</text>
     <text x="5" y="215" font-size="10pt"><tspan font-weight="bold">@{card.stat2}: </tspan>@card.val2</text>
     <text x="5" y="230" font-size="10pt"><tspan font-weight="bold">@{card.stat3}: </tspan>@card.val3</text>
-    <text x="5" y="250" font-size="10px"
-       line-height="125%" wrap-margin="25"
-       shape-inside="url(#messageClip)">"@card.message"</text>
+    <foreignObject x="5" y="230" width="100%">
+        <p font-size="10pt" xmlns="http://www.w3.org/1999/xhtml">"@card.message"</p>
+    </foreignObject>
    <text font-size="10pt">@card.email</text>
 </svg>
